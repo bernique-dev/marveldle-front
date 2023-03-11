@@ -1,0 +1,27 @@
+.similarity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100px;
+}
+
+.none {
+    color: red;
+}
+
+.partial {
+    color: orange;
+}
+
+.exact {
+    color: green;
+}
+
+.upper {
+    color: purple
+}
+
+.lower {
+    color: lightskyblue
+}

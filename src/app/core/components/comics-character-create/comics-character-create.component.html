@@ -1,0 +1,41 @@
+<form [formGroup]="formGroup" (submit)="onSubmit()">
+    
+    <mat-form-field>
+        <input matInput type="text" formControlName="id">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="text" formControlName="name">
+    </mat-form-field>
+
+    <input type="file" class="file-input"
+        (change)="onFileSelected($event)">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Species</mat-label>
+        <mat-select formControlName="species" multiple>
+            <mat-option *ngFor="let species of speciesList" [value]="species">{{species}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-select formControlName="gender">
+        <mat-option *ngFor="let gender of gendersList" [value]="gender">
+            {{ gender }}
+        </mat-option>
+    </mat-select>
+    
+    <mat-select formControlName="type">
+        <mat-option *ngFor="let characterType of characterTypesList" [value]="characterType">
+            {{ characterType }}
+        </mat-option>
+    </mat-select>
+
+    <mat-form-field>
+        <input matInput type="number" placeholder="2000" formControlName="apparitionYear">
+    </mat-form-field>
+
+    <input type="submit">
+    <div class="file-upload">
+    {{fileName || "No file uploaded yet."}}
+    </div>
+</form>

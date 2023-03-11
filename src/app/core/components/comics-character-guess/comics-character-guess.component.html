@@ -1,0 +1,42 @@
+<div class="d-flex flex-column align-items-center justify-content-left">
+    <div class="row">
+        <div class="col">
+            <div ngbDropdown class="d-inline-block">
+                <div class="input-group">
+                    <div class="form-outline">
+                        <input type="text" class="form-control" [ngModel]="guessedName" (ngModelChange)="filter($event)" ngbDropdownToggle/>
+                    </div>
+                </div>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" open="true">
+                    <ng-container *ngFor="let character of filteredCharacters">
+                        <button ngbDropdownItem (click)="preguess(character)" class="d-flex align-items-center justify-content-left gap-2">
+                            <img width="60px" src='{{"https://localhost:7234/images/characters/comics/" + character.id + ".png"}}'>
+                            <h3>{{character.name}}</h3>
+                        </button>
+                    </ng-container>
+                </div>
+            </div>
+            <button class="btn btn-primary" (click)="guess()">
+                Guess
+            </button>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column justify-content-left gap-2">
+        <div *ngFor="let character of triedCharacters" class="d-flex align-items-center justify-content-left gap-2">
+            <img width="60px" src='{{"https://localhost:7234/images/characters/comics/" + character.id + ".png"}}'>
+            <div class="similarity {{charactersSimilarities.get(character)?.gender | lowercase}}">
+                <span>{{character.gender}}</span>
+            </div>
+            <div class="similarity {{charactersSimilarities.get(character)?.type | lowercase}}">
+                <span>{{character.type}}</span>
+            </div>
+            <div class="similarity">
+                <span *ngFor="let species of character.species" class="{{charactersSimilarities.get(character)?.species | lowercase}}">{{species}}</span>
+            </div>
+            <div class="similarity {{charactersSimilarities.get(character)?.apparitionYear | lowercase}}">
+                <span>{{character.apparitionYear}}</span>
+            </div>
+        </div>
+    </div>
+</div>
