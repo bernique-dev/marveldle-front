@@ -51,6 +51,14 @@
               ],
               "outputHashing": "all"
             },
+            "docker": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.docker.ts"
+                }
+              ]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -67,6 +75,9 @@
           "configurations": {
             "production": {
               "browserTarget": "marveldle-front:build:production"
+            },
+            "docker": {
+              "browserTarget": "marveldle-front:build:docker"
             },
             "development": {
               "browserTarget": "marveldle-front:build:development"
