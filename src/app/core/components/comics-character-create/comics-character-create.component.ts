@@ -90,14 +90,8 @@ export class ComicsCharacterCreateComponent implements OnInit {
     const file:File = event.target.files[0];
 
     if (file) {
-
         this.fileName = file.name;
-
         this.formData.set("file", file);
-
-        // const upload$ = this.http.post("/api/thumbnail-upload", formData);
-
-        // upload$.subscribe();
       }
   }
 
@@ -113,7 +107,7 @@ export class ComicsCharacterCreateComponent implements OnInit {
       this.formData.set('Species[' + index + ']', speciesArray[index])
     } 
     this.formData.set('ApparitionYear', this.formGroup.get('apparitionYear')?.value)
-    this.characterService.create(this.formData).subscribe(
+    this.characterService.createComicCharacter(this.formData).subscribe(
       data => console.log(data)
     )
   }

@@ -10,7 +10,7 @@
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1" open="true">
                     <ng-container *ngFor="let character of filteredCharacters">
                         <button ngbDropdownItem (click)="preguess(character)" class="d-flex align-items-center justify-content-left gap-2">
-                            <img width="60px" src='{{"https://localhost:7234/images/characters/comics/" + character.id + ".png"}}'>
+                            <img width="60px" src='{{url + "/images/characters/comics/" + character.id + ".png"}}'>
                             <h3>{{character.name}}</h3>
                         </button>
                     </ng-container>
@@ -23,16 +23,16 @@
     </div>
 
     <div class="d-flex flex-column justify-content-left gap-2">
-        <div *ngFor="let character of triedCharacters" class="d-flex align-items-center justify-content-left gap-2">
-            <img width="60px" src='{{"https://localhost:7234/images/characters/comics/" + character.id + ".png"}}'>
+        <div *ngFor="let character of triedCharacters" class="d-flex align-items-center justify-content-left gap-2 guess">
+            <img width="100px" src='{{url + "/images/characters/comics/" + character.id + ".png"}}'>
             <div class="similarity {{charactersSimilarities.get(character)?.gender | lowercase}}">
                 <span>{{character.gender}}</span>
             </div>
             <div class="similarity {{charactersSimilarities.get(character)?.type | lowercase}}">
                 <span>{{character.type}}</span>
             </div>
-            <div class="similarity">
-                <span *ngFor="let species of character.species" class="{{charactersSimilarities.get(character)?.species | lowercase}}">{{species}}</span>
+            <div class="similarity {{charactersSimilarities.get(character)?.species | lowercase}}">
+                <span *ngFor="let species of character.species">{{species}}</span>
             </div>
             <div class="similarity {{charactersSimilarities.get(character)?.apparitionYear | lowercase}}">
                 <span>{{character.apparitionYear}}</span>

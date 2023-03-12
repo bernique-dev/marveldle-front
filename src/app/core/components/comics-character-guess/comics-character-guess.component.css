@@ -1,27 +1,73 @@
+:root {
+    --similarity-delay: .2s
+}
+
+@keyframes flip {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}
+
 .similarity {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
     width: 100px;
+    height: 100px;
+
+    border: 1px solid black;
+    border-radius: 5px;
+    opacity: 0;
+    animation: flip 0.5s ease forwards;
+}
+
+.similarity:nth-child(2) {
+    animation-delay: .4s;
+}
+
+.similarity:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.similarity:nth-child(4) {
+    animation-delay: 1.5s;
+}
+
+.similarity:nth-child(5) {
+    animation-delay: 2s;
 }
 
 .none {
-    color: red;
+    background-color: brown;
+    color: white;
 }
 
 .partial {
-    color: orange;
+    background-color: orange;
 }
 
 .exact {
-    color: green;
+    background-color: green;
+    color: white;
 }
 
 .upper {
-    color: purple
+    background-color: purple;
+    color: white;
 }
 
 .lower {
-    color: lightskyblue
+    background-color: lightskyblue
 }
+
+.dropdown-toggle {
+    width: 400px;
+}
+
+.dropdown-menu { max-height: 350px; overflow-y: auto; min-width: 100% !important; background-attachment: local, local, scroll, scroll; }
+
+.dropdown-item { white-space: normal; }

@@ -18,12 +18,24 @@ export class CharacterService {
     return this.httpClient.get<ComicsCharacter[]>(environment.url + "/characters/comics");
   }
 
-  guess(character : Character) : Observable<ComicsCharacterSimilarities> {
+  guessComicCharacter(character : Character) : Observable<ComicsCharacterSimilarities> {
     return this.httpClient.get<ComicsCharacterSimilarities>(environment.url + "/characters/comics/guess/" + character.id)
   }
 
-  create(character : FormData) : Observable<any> {
-    return this.httpClient.post<any>(environment.url + '/characters/comics', character);
+  createComicCharacter(characterForm : FormData) : Observable<any> {
+    return this.httpClient.post<any>(environment.url + '/characters/comics', characterForm);
+  }
+
+  getAudiovisualCharacters() : Observable<ComicsCharacter[]> {
+    return this.httpClient.get<ComicsCharacter[]>(environment.url + "/characters/audiovisual");
+  }
+
+  guessAudiovisualCharacter(character : Character) : Observable<ComicsCharacterSimilarities> {
+    return this.httpClient.get<ComicsCharacterSimilarities>(environment.url + "/characters/audiovisual/guess/" + character.id)
+  }
+
+  createAudioVisualCharacter(characterForm : FormData) : Observable<any> {
+    return this.httpClient.post<any>(environment.url + '/characters/audiovisual', characterForm);
   }
 
 }

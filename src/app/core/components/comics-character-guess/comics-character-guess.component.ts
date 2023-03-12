@@ -1,5 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Character } from '../../models/character';
 import { ComicsCharacter } from '../../models/comics-character';
 import { ComicsCharacterSimilarities } from '../../models/comics-character-similarities';
@@ -11,6 +12,8 @@ import { CharacterService } from '../../services/character.service';
   styleUrls: ['./comics-character-guess.component.css']
 })
 export class ComicsCharacterGuessComponent implements OnInit {
+
+  url: string = environment.url
 
   guessedName : string = ""
   guessedCharacter : ComicsCharacter | undefined
@@ -42,7 +45,7 @@ export class ComicsCharacterGuessComponent implements OnInit {
 
   public guess() {
     if (this.guessedCharacter != undefined) {
-      this.characterService.guess(this.guessedCharacter).subscribe(
+      this.characterService.guessComicCharacter(this.guessedCharacter).subscribe(
         data => {
           if (this.guessedCharacter) {
             this.charactersSimilarities.set(this.guessedCharacter, data)
@@ -51,7 +54,7 @@ export class ComicsCharacterGuessComponent implements OnInit {
             this.guessedCharacter = undefined
             this.filter("")
             if (data['id'] == 'Exact') {
-              this.win()
+              this.triggerWin()
             }
           }
         } 
@@ -61,6 +64,12 @@ export class ComicsCharacterGuessComponent implements OnInit {
 
   public filter(name: any) {
     this.filteredCharacters = this.characters.filter(cc => cc.name.toLowerCase().includes(name.toLowerCase()) && !this.triedCharacters.includes(cc))
+  }
+
+  public triggerWin() {
+    setTimeout(() => {
+        this.win();
+    }, 2500);
   }
 
   public win() {
